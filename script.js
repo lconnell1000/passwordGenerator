@@ -40,23 +40,23 @@ function generatePassword() {
 
   //once we know the user has selected an acceptable number, now we can get them to select their acceptance criteria
   //check for numbers
-  let numbs = confirm('Click ok if you would like to use numbers, cancel if not')
+  numbs = confirm('Click ok if you would like to use numbers, cancel if not')
   if (numbs) {
     allPossibleChars = allPossibleChars.concat(NUM_CHAR)
   }
 
   //check for special characters
-  let special = confirm('Click ok if you would like to use special characters, cancel if not')
+  special = confirm('Click ok if you would like to use special characters, cancel if not')
   if (special) {
     allPossibleChars = allPossibleChars.concat(SPECIAL_CHAR)
   }
   //check for lower case letters
-  let lowerCase = confirm('Click ok if you would like to use lower case letters, cancel if not')
+  lowerCase = confirm('Click ok if you would like to use lower case letters, cancel if not')
   if (lowerCase) {
     allPossibleChars = allPossibleChars.concat(LOWERCASE_CHAR)
   }
   //check for upper case letters
-  let upperCase = confirm('Click ok if you would like to use upper case letters, cancel if not')
+  upperCase = confirm('Click ok if you would like to use upper case letters, cancel if not')
   if (upperCase) {
     allPossibleChars = allPossibleChars.concat(UPPERCASE_CHAR)
   }
@@ -72,7 +72,7 @@ function generatePassword() {
   while (notValid) {
     let pass = generatePossible(passLength, allPossibleChars);
     let valid = checkPasswordValid(pass);
-    console.log(pass + " password");
+    console.log(pass + " password new");
     console.log(valid + " if valid");
     if (valid) {
       notValid = false;
@@ -94,27 +94,32 @@ function generatePossible(userLength, concatString) {
 // function to check if our password is valid and contains all the character sets
 // that the user has elected to contain
 function checkPasswordValid(passToCheck) {
-  console.log(passToCheck + ": check password valid");
+  console.log(numbs + " Value of Numbs");
+  console.log(passToCheck + " check password valid");
   if (numbs) {
     let check1 = commonChar(NUM_CHAR, passToCheck);
+    console.log("check 1 " + check1);
     if (!check1) {
       return false;
     }
   }
   if (special) {
     let check2 = commonChar(SPECIAL_CHAR, passToCheck);
+    console.log("check 2 " + check2);
     if (!check2) {
       return false;
     }
   }
   if (upperCase) {
     let check3 = commonChar(UPPERCASE_CHAR, passToCheck);
+    console.log("check 3 " + check3);
     if (!check3) {
       return false;
     }
   }
   if (lowerCase) {
     let check4 = commonChar(LOWERCASE_CHAR, passToCheck);
+    console.log("check 4 " + check4);
     if (!check4) {
       return false;
     }
@@ -124,9 +129,17 @@ function checkPasswordValid(passToCheck) {
 }
 
 //function to check if two strings have common characters
-function commonChar(left, right) {
-  
+function commonChar(charSetString, passwordToTest) {
+
+  for (let i = 0; i < passwordToTest.length; i++) {
+    if (charSetString.includes(passwordToTest[i])) {
+      return true;
+    }
+  }
+  return false;
+
 }
+
 
 
 // Add event listener to generate button
