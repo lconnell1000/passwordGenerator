@@ -64,9 +64,10 @@ function generatePassword() {
   if (numbs === false && special === false && lowerCase === false && upperCase === false) {
     return alert('You must select atleast one character type to include in your password, try again')
   }
-//once we have the users wanted character sets, we must create to functions, one to generate a random
-//password with those character sets, the other to check that the charsets that they have requested are all included
-//if theyre not all included we try again to make another password until they are all included.
+//once we have the users wanted character sets, we must create 2 functions, one to generate a random
+//password with those character sets which are now in a string, the other to check that the charsets that
+// the user has requested are all included if theyre not all included we try again to make another password 
+//and the while loop will continue, until the password is valid, and all user requested charsets are included :)
   var notValid = true;
   var validPassword = "";
   while (notValid) {
@@ -80,16 +81,18 @@ function generatePassword() {
   return validPassword;
 }
 // function to loop to generate random selection of character based on the password length chosen by the user.
-//This will kepe looping until mainPassword legnth = allPossibleChars length
+//This will kepe looping until possiblePassword legnth = allPossibleChars length
 function generatePossible(userLength, concatString) {
-  var mainPassword = "";
+  var possiblePassword = "";
   for (var n = 0; n < userLength; n++) {
-    mainPassword += concatString.charAt(Math.floor(Math.random() * concatString.length));
+    possiblePassword += concatString.charAt(Math.floor(Math.random() * concatString.length));
   }
-  return mainPassword;
+  return possiblePassword;
 }
 // function to check if our password is valid and contains all the character sets
 // that the user has elected to contain
+//if any of the checks return a false value the function will return a false value which will make the while 
+//loop in line 72 loop back around to create another possible password to pass back into this function
 function checkPasswordValid(passToCheck) {
   console.log(passToCheck + " check password valid");
   if (numbs) {
