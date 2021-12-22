@@ -94,31 +94,31 @@ function generatePossible(userLength, concatString) {
 //if any of the checks return a false value the function will return a false value which will make the while 
 //loop in line 72 loop back around to create another possible password to pass back into this function
 function checkPasswordValid(passToCheck) {
-  console.log(passToCheck + " check password valid");
+  console.log(passToCheck + " check if this password is valid");
   if (numbs) {
     let check1 = commonChar(NUM_CHAR, passToCheck);
-    console.log("check 1 " + check1);
+    console.log("check for numbers " + check1);
     if (!check1) {
       return false;
     }
   }
   if (special) {
     let check2 = commonChar(SPECIAL_CHAR, passToCheck);
-    console.log("check 2 " + check2);
+    console.log("check for special characters " + check2);
     if (!check2) {
       return false;
     }
   }
   if (upperCase) {
     let check3 = commonChar(UPPERCASE_CHAR, passToCheck);
-    console.log("check 3 " + check3);
+    console.log("check for uppercase " + check3);
     if (!check3) {
       return false;
     }
   }
   if (lowerCase) {
     let check4 = commonChar(LOWERCASE_CHAR, passToCheck);
-    console.log("check 4 " + check4);
+    console.log("check for lower case " + check4);
     if (!check4) {
       return false;
     }
