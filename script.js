@@ -4,6 +4,7 @@ var numbs = false;
 var special = false;
 var lowerCase = false;
 var upperCase = false;
+
 //set constants for the different character types
 const NUM_CHAR = '0123456789';
 const LOWERCASE_CHAR = 'abcdefghijklmnopqrstuvwxyz';
@@ -17,14 +18,10 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
-
 // create our generatePassword function to prompt the user to input acceptance criteria for the password
-
 function generatePassword() {
   let allPossibleChars = "";
   let passLength = prompt("Please select a value between 8 and 128 for your password length")
@@ -39,41 +36,42 @@ function generatePassword() {
   }
 
   //once we know the user has selected an acceptable number, now we can get them to select their acceptance criteria
-  //check for numbers
+  //check if the user wants numbers
   numbs = confirm('Click ok if you would like to use numbers, cancel if not')
   if (numbs) {
     allPossibleChars = allPossibleChars.concat(NUM_CHAR)
   }
 
-  //check for special characters
+  //check if the user wants special characters
   special = confirm('Click ok if you would like to use special characters, cancel if not')
   if (special) {
     allPossibleChars = allPossibleChars.concat(SPECIAL_CHAR)
   }
-  //check for lower case letters
+
+  //check if the user wants lower case letters
   lowerCase = confirm('Click ok if you would like to use lower case letters, cancel if not')
   if (lowerCase) {
     allPossibleChars = allPossibleChars.concat(LOWERCASE_CHAR)
   }
-  //check for upper case letters
+
+  //check if the user wants upper case letters
   upperCase = confirm('Click ok if you would like to use upper case letters, cancel if not')
   if (upperCase) {
     allPossibleChars = allPossibleChars.concat(UPPERCASE_CHAR)
   }
 
-
   //make sure the user has selected to use atleast one character type, if not return to start
   if (numbs === false && special === false && lowerCase === false && upperCase === false) {
     return alert('You must select atleast one character type to include in your password, try again')
   }
-
+//once we have the users wanted character sets, we must create to functions, one to generate a random
+//password with those character sets, the other to check that the charsets that they have requested are all included
+//if theyre not all included we try again to make another password until they are all included.
   var notValid = true;
   var validPassword = "";
   while (notValid) {
     let pass = generatePossible(passLength, allPossibleChars);
     let valid = checkPasswordValid(pass);
-    console.log(pass + " password new");
-    console.log(valid + " if valid");
     if (valid) {
       notValid = false;
       validPassword = pass;
@@ -90,11 +88,9 @@ function generatePossible(userLength, concatString) {
   }
   return mainPassword;
 }
-
 // function to check if our password is valid and contains all the character sets
 // that the user has elected to contain
 function checkPasswordValid(passToCheck) {
-  console.log(numbs + " Value of Numbs");
   console.log(passToCheck + " check password valid");
   if (numbs) {
     let check1 = commonChar(NUM_CHAR, passToCheck);
@@ -127,7 +123,6 @@ function checkPasswordValid(passToCheck) {
   }
   return true;
 }
-
 //function to check if two strings have common characters
 function commonChar(charSetString, passwordToTest) {
 
@@ -139,8 +134,5 @@ function commonChar(charSetString, passwordToTest) {
   return false;
 
 }
-
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
