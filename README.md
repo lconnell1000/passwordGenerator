@@ -31,5 +31,7 @@ types to be included in the password, the user needs to confirm if they want num
 > **Note** : This shows where the user selects 8 characters for the password and selects all the character sets, that the password is checked to see it has all the character sets included in it. In this example they weren't all included the first instance, so it tried another password where it passed the checks.
 ![In this example they were not all included the first time, so you can see it keeps tryign till it generates a valid password](Screenshot7.png)
 
+ **Note** : I have left some code to show the console log at crucial stages of the password validity check.
+
 ## A link to the webpage is shown below:
 https://lconnell1000.github.io/passwordGenerator/
